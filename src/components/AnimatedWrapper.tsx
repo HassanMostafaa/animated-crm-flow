@@ -1,17 +1,20 @@
 
 import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
+import { cn } from '@/lib/utils';
 
 interface AnimatedWrapperProps {
   children: React.ReactNode;
   animation?: 'fadeIn' | 'slideIn' | 'scaleIn' | 'none';
   delay?: number;
+  className?: string;
 }
 
 const AnimatedWrapper: React.FC<AnimatedWrapperProps> = ({
   children,
   animation = 'fadeIn',
   delay = 0,
+  className,
 }) => {
   const elementRef = useRef<HTMLDivElement>(null);
   
@@ -42,7 +45,7 @@ const AnimatedWrapper: React.FC<AnimatedWrapperProps> = ({
   }, [animation, delay]);
   
   return (
-    <div ref={elementRef} className="w-full">
+    <div ref={elementRef} className={cn("w-full", className)}>
       {children}
     </div>
   );
